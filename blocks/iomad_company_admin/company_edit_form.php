@@ -91,6 +91,17 @@ class company_edit_form extends company_moodleform {
             $mform->setDefault('country', $CFG->country);
         }
 
+        /* New fields for ecommerce and proctoring PWG ************************/
+        $mform->addElement('advcheckbox', 'ecommerce', 'Allow e-commerce?');
+        $mform->setType('ecommerce', PARAM_BOOL);
+        $mform->setDefault('ecommerce', 0);
+
+        $mform->addElement('advcheckbox', 'proctoring', 'Allow proctoring?');
+        $mform->setType('proctoring', PARAM_BOOL);
+        $mform->setDefault('proctoring', 1);
+        /**********************************************************************/
+
+
         $mform->addElement('textarea', 'companydomains', get_string('companydomains', 'block_iomad_company_admin'), array('display' => 'noofficial'));
         $mform->setType('companydomains', PARAM_NOTAGS);
 
@@ -392,6 +403,18 @@ if ($mform->is_cancelled()) {
 } else if ($data = $mform->get_data()) {
     $data->userid = $USER->id;
 
+    /* check new properties PWG ***********************************************/
+    if (!property_exists($data, 'ecommerce')) {
+      $data->ecommerce = 0;
+    }
+
+    if (!property_exists($data, 'proctoring')) {
+      $data->proctoring = 0;
+    }
+    /**************************************************************************/
+
+    // print_r($data);
+
     if ($isadding) {
         // Set up a profiles field category for this company.
         $catdata = new stdclass();
@@ -399,6 +422,10 @@ if ($mform->is_cancelled()) {
         $catdata->name = $data->shortname;
         $data->profileid = $DB->insert_record('user_info_category', $catdata, false);
 
+        // print_r($data);
+        // $data->ecommerce = 1;
+        // $data->proctoring = 1;
+        // print_r($data);
         $companyid = $DB->insert_record('company', $data);
 
         // Set up default department.
