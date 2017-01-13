@@ -24,6 +24,10 @@ if (empty($CFG->authloginviaemail)) {
 <?php
   } ?>
     <h2><?php print_string("login") ?></h2>
+
+    <?php // Requested by Gail - PWG ?>
+    <p>Your email address is your username. All the letters in your username must be entered in lower case.</p>
+
       <div class="subcontent loginsub">
         <?php
           if (!empty($errormsg)) {
@@ -95,7 +99,7 @@ if (empty($CFG->authloginviaemail)) {
               } ?>
                  <div class="signupform">
                    <form action="signup.php" method="get" id="signup">
-                   <div><input type="submit" value="<?php print_string("startsignup") ?>" /></div>
+                   <div><?php // Requested removal by Gail - PWG ?></div>
                    </form>
                  </div>
 <?php     } else if (!empty($CFG->registerauth)) {
