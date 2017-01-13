@@ -680,7 +680,7 @@ if (!$users) {
                                 $editbutton . "&nbsp;" .
                                 $suspendbutton . "&nbsp;" .
                                 $passwordbutton . '<br />' .
-                                $deletebutton . '<br />' .
+                                (is_siteadmin() ? $deletebutton . '<br />' : '') .
                                 $enrolmentbutton . '</br>' .
                                 $licensebutton);
         } else {
@@ -698,7 +698,7 @@ if (!$users) {
                                     $editbutton . "&nbsp;" .
                                     $suspendbutton . "&nbsp;" .
                                     $passwordbutton . '<br />' .
-                                    $deletebutton . '<br />' .
+                                    (is_siteadmin() ? $deletebutton . '<br />' : '') .
                                     $enrolmentbutton . '</br>' .
                                     $licensebutton);
         }
