@@ -31,7 +31,23 @@ class block_iomad_commerce extends block_base {
     }
 
     public function get_content() {
-        global $CFG;
+        global $CFG, $USER, $DB;
+
+        /**********************************************************************/
+        // Hide the shop content if the user's company doesn't support ecommerce
+        // Always show it if the user is a siteadmin
+        // PWG
+        $ecommerce = $DB->get_field_sql("SELECT c.ecommerce
+                                         FROM {user} u
+                                         JOIN {company_users} cu ON cu.userid = u.id
+                                         JOIN {company} c ON cu.companyid = c.id
+                                         WHERE u.id = ?",
+                                       array($USER->id));
+
+        if (!is_siteadmin() && !$ecommerce) {
+          return null;
+        }
+        /**********************************************************************/
 
         if ($this->content !== null) {
             return $this->content;
@@ -59,4 +75,3 @@ class block_iomad_commerce extends block_base {
         return true;
     }
 }
-
