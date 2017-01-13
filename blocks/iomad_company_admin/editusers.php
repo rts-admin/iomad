@@ -122,7 +122,7 @@ $blockpage->display_header();
 // Check the department is valid.
 if (!empty($departmentid) && !company::check_valid_department($companyid, $departmentid)) {
     print_error('invaliddepartment', 'block_iomad_company_admin');
-}   
+}
 
 // Get the associated department id.
 $company = new company($companyid);
@@ -677,10 +677,10 @@ if (!$users) {
                                 "$user->email",
                                 "$user->department",
                                 $strlastaccess,
-                                $editbutton .
-                                $suspendbutton .
-                                $deletebutton .
+                                $editbutton . "&nbsp;" .
+                                $suspendbutton . "&nbsp;" .
                                 $passwordbutton . '<br />' .
+                                $deletebutton . '<br />' .
                                 $enrolmentbutton . '</br>' .
                                 $licensebutton);
         } else {
@@ -695,10 +695,10 @@ if (!$users) {
                                     $user->email,
                                     $user->department,
                                     $strlastaccess,
-                                    $editbutton .
-                                    $suspendbutton .
-                                    $deletebutton .
+                                    $editbutton . "&nbsp;" .
+                                    $suspendbutton . "&nbsp;" .
                                     $passwordbutton . '<br />' .
+                                    $deletebutton . '<br />' .
                                     $enrolmentbutton . '</br>' .
                                     $licensebutton);
         }
@@ -763,4 +763,3 @@ function iomad_get_users_listing($sort='lastaccess', $dir='ASC', $page=0, $recor
                                  $sort", $params, $page, $recordsperpage);
 
 }
-
