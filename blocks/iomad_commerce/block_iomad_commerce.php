@@ -23,12 +23,13 @@ require_once($CFG->dirroot.'/blocks/iomad_commerce/lib.php');
 
 class block_iomad_commerce extends block_base {
     public function init() {
-        $this->title = get_string('pluginname', 'block_iomad_commerce');
+        //$this->title = get_string('pluginname', 'block_iomad_commerce');
+        $this->title = "Pay Course Fee";
     }
 
-    public function hide_header() {
-        return true;
-    }
+    // public function hide_header() {
+    //     return true;
+    // }
 
     public function get_content() {
         global $CFG, $USER, $DB;
@@ -56,6 +57,8 @@ class block_iomad_commerce extends block_base {
         $this->content = new stdClass;
         $this->content->footer = '';
 
+        /* Text and icons below added per Gail's request - PWG */
+
         // Has this been setup properly
         if (!is_commerce_configured()) {
             $link = new moodle_url('/admin/settings.php', array('section' => 'blocksettingiomad_commerce'));
@@ -63,8 +66,10 @@ class block_iomad_commerce extends block_base {
             return $this->content;
         }
 
-        $this->content->text = '<a href="' . new moodle_url('/blocks/iomad_commerce/shop.php') .
-                               '">' . get_string('shop_title', 'block_iomad_commerce') . '</a>';
+        $this->content->text = '<div><span class="fa fa-paypal"></span> <a target="_blank" href="' . new moodle_url('/mod/page/view.php?id=1810') . '">Instructions - PLEASE READ!</a></div>';
+
+        $this->content->text .= '<div><span class="fa fa-usd"></span> <a href="' . new moodle_url('/blocks/iomad_commerce/shop.php') .
+                               '">' . get_string('shop_title', 'block_iomad_commerce') . '</a></div>';
 
         $this->content->text .= get_basket_info();
 
