@@ -66,10 +66,10 @@ class block_iomad_commerce extends block_base {
             return $this->content;
         }
 
-        $this->content->text = '<div><span class="fa fa-paypal"></span> <a target="_blank" href="' . new moodle_url('/mod/page/view.php?id=1810') . '">Instructions - PLEASE READ!</a></div>';
+        $this->content->text = '<p><span class="fa fa-paypal"></span> <a target="_blank" href="' . new moodle_url('/mod/page/view.php?id=1810') . '">Instructions - PLEASE READ!</a></p>';
 
-        $this->content->text .= '<div><span class="fa fa-usd"></span> <a href="' . new moodle_url('/blocks/iomad_commerce/shop.php') .
-                               '">' . get_string('shop_title', 'block_iomad_commerce') . '</a></div>';
+        $this->content->text .= '<p><span class="fa fa-usd"></span> <a href="' . new moodle_url('/blocks/iomad_commerce/shop.php') .
+                               '">' . get_string('shop_title', 'block_iomad_commerce') . '</a></p>';
 
         $this->content->text .= get_basket_info();
 
