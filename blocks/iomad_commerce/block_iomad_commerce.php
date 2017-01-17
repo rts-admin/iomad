@@ -24,7 +24,7 @@ require_once($CFG->dirroot.'/blocks/iomad_commerce/lib.php');
 class block_iomad_commerce extends block_base {
     public function init() {
         //$this->title = get_string('pluginname', 'block_iomad_commerce');
-        $this->title = "Pay Course Fee";
+        $this->title = "Buy Courses";
     }
 
     // public function hide_header() {
